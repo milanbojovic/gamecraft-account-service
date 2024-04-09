@@ -31,6 +31,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
+
+    //TODO name --> username
     public ResponseEntity<?> login(Users user) {
         Users dbUser = userRepository.findByName(user.getName());
         if (dbUser != null && dbUser.getPassword().equals(user.getPassword())) {
@@ -41,9 +43,5 @@ public class UserService {
         Map<String, String> response = new HashMap<>();
         response.put("error", "Invalid username or password");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-    }
-
-    public Users findUserByUsername(String username) {
-        return userRepository.findByName(username);
     }
 }

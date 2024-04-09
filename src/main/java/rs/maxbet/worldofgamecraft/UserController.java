@@ -16,8 +16,6 @@ public class UserController {
 
     @Autowired
     private final UserService userService;
-    @Autowired
-    private JwtUtil jwtUtil;
     private final RabbitTemplate rabbitTemplate;
 
     public UserController(UserService userService, RabbitTemplate rabbitTemplate) {
@@ -28,7 +26,7 @@ public class UserController {
     @PostMapping(value = "/register")
     public void createUser(@RequestBody Users user) {
         userService.createUser(user);
-//        rabbitTemplate.convertAndSend("", "q.user-registration", user.getId());
+        //rabbitTemplate.convertAndSend("", "q.user-registration", user.getId()); //TODO
     }
 
     @GetMapping(value = "/users")

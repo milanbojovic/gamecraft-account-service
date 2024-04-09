@@ -19,12 +19,4 @@ public class JwtUtil {
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
     }
-
-    public String extractUsername(String token) {
-        return Jwts.parser()
-                .setSigningKey(SECRET)
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
-    }
 }
