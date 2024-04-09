@@ -1,0 +1,44 @@
+services:
+  account-service-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: account-service-db
+    command: /bin/bash ./entrypoint.sh
+    ports:
+      - "1433:1433"
+    expose:
+      - "1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    volumes:
+      - ./src/main/resources/database/entrypoint.sh:/entrypoint.sh
+      - ./src/main/resources/database/docker-db-init.sh:/docker-db-init.sh
+      - ./src/main/resources/database//db-init.sql:/db-init.sql
+    links:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3.11-management-alpine
+    container_name: rabbitmq
+    ports:
+    - "5672:5672"
+    - "15672:15672"
+    expose:
+      - "5672"
+      - "15672"
+#  environment:
+#    RABBITMQ_DEFAULT_USER: bunny
+#    RABBITMQ_DEFAULT_PASS: Carrot1!
+
+#  docker-accounts-service-backend:
+#    image: docker-accounts-service-backend:1.0-SNAPSHOT
+#    container_name: docker-accounts-service-backend
+#    ports:
+#      - "8080:8081"
+#    links:
+#      - account-service-db
+
+
+
+
+
