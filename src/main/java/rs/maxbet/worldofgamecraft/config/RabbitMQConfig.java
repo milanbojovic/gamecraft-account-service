@@ -1,4 +1,4 @@
-package rs.maxbet.worldofgamecraft;
+package rs.maxbet.worldofgamecraft.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;

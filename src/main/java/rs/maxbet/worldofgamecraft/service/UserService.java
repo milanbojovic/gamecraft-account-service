@@ -1,4 +1,4 @@
-package rs.maxbet.worldofgamecraft;
+package rs.maxbet.worldofgamecraft.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,13 +31,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-
-    //TODO name --> username
     public ResponseEntity<?> login(Users user) {
-        Users dbUser = userRepository.findByName(user.getName());
+        Users dbUser = userRepository.findByUsername(user.getUsername());
         if (dbUser != null && dbUser.getPassword().equals(user.getPassword())) {
             Map<String, String> response = new HashMap<>();
-            response.put("Bearer", jwtUtil.generateToken(dbUser.getName(), dbUser.getRole(), dbUser.getId()));
+            response.put("Bearer", jwtUtil.generateToken(dbUser.getUsername(), dbUser.getRole(), dbUser.getId()));
             return ResponseEntity.ok(response.toString());
         }
         Map<String, String> response = new HashMap<>();

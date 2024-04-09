@@ -30,14 +30,6 @@ services:
 #    RABBITMQ_DEFAULT_USER: bunny
 #    RABBITMQ_DEFAULT_PASS: Carrot1!
 
-#  docker-accounts-service-backend:
-#    image: docker-accounts-service-backend:1.0-SNAPSHOT
-#    container_name: docker-accounts-service-backend
-#    ports:
-#      - "8080:8081"
-#    links:
-#      - account-service-db
-
 
 
 

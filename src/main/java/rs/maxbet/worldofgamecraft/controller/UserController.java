@@ -1,12 +1,12 @@
-package rs.maxbet.worldofgamecraft;
+package rs.maxbet.worldofgamecraft.controller;
 
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.maxbet.worldofgamecraft.service.UserService;
 import rs.maxbet.worldofgamecraft.data.Users;
-import rs.maxbet.worldofgamecraft.security.JwtUtil;
 
 import java.util.List;
 

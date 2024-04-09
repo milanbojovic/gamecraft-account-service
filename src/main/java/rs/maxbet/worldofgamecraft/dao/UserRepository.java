@@ -5,6 +5,6 @@ import rs.maxbet.worldofgamecraft.data.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 
-    Users findByName(String name);
+    Users findByUsername(String username);
 
 }
