@@ -1,10 +1,11 @@
 package rs.maxbet.worldofgamecraft.controller;
 
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.maxbet.worldofgamecraft.data.transport.UserRepresentation;
+import rs.maxbet.worldofgamecraft.service.MessageService;
 import rs.maxbet.worldofgamecraft.service.UserService;
 import rs.maxbet.worldofgamecraft.data.Users;
 
@@ -16,17 +17,17 @@ public class UserController {
 
     @Autowired
     private final UserService userService;
-    private final RabbitTemplate rabbitTemplate;
+    private final MessageService messageService;
 
-    public UserController(UserService userService, RabbitTemplate rabbitTemplate) {
+    public UserController(UserService userService, MessageService messageService) {
         this.userService = userService;
-        this.rabbitTemplate = rabbitTemplate;
+        this.messageService = messageService;
     }
 
     @PostMapping(value = "/register")
     public void createUser(@RequestBody Users user) {
         userService.createUser(user);
-        //rabbitTemplate.convertAndSend("", "q.user-registration", user.getId()); //TODO
+        messageService.publishUserRegistration(new UserRepresentation(user));
     }
 
     @GetMapping(value = "/users")

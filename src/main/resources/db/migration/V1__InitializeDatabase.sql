@@ -1,7 +1,7 @@
 create table account_schema.users
 (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    username     varchar(255) unique not null,
+    username varchar(255) unique not null,
     password varchar(255) not null,
     role     varchar(255) not null
 );

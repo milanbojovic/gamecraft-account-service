@@ -113,13 +113,6 @@
                             <goal>up</goal>
                         </goals>
                     </execution>
-<!--                    <execution>-->
-<!--                        <id>down</id>-->
-<!--                        <phase>post-integration-test</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>down</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
                 </executions>
             </plugin>
             <plugin>
