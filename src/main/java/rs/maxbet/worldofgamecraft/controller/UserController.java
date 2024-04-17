@@ -4,7 +4,7 @@ package rs.maxbet.worldofgamecraft.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.maxbet.worldofgamecraft.data.transport.UserRepresentation;
+import rs.maxbet.worldofgamecraft.data.transport.UserRegistrationEvent;
 import rs.maxbet.worldofgamecraft.service.MessageService;
 import rs.maxbet.worldofgamecraft.service.UserService;
 import rs.maxbet.worldofgamecraft.data.Users;
@@ -27,7 +27,7 @@ public class UserController {
     @PostMapping(value = "/register")
     public void createUser(@RequestBody Users user) {
         userService.createUser(user);
-        messageService.publishUserRegistration(new UserRepresentation(user));
+        messageService.publishUserRegistration(new UserRegistrationEvent(user));
     }
 
     @GetMapping(value = "/users")

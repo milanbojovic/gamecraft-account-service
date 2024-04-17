@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WorldOfGamecraftApplication {
+public class WorldOfGamecraftAccountsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WorldOfGamecraftApplication.class, args);
+        SpringApplication.run(WorldOfGamecraftAccountsApplication.class, args);
     }
 
 }

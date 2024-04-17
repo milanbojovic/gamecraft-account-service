@@ -29,3 +29,38 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: bunny
       RABBITMQ_DEFAULT_PASS: Carrot1!
+#    restart: always
+#    healthcheck:
+#      test: rabbitmq-diagnostics check_port_connectivity
+#      interval: 1s
+#      timeout: 3s
+#      retries: 30
+#    labels:
+#      - "autoheal=true"
+#
+#  # Autoheal container to restart unhealthy containers
+#  # reason behind this was that rabbitmq container was not starting for me on M1 Macbook
+#  # I had to manually restart the container after starting the compose to make it work
+#  # this way it's done automatically
+#  autoheal:
+#    image: willfarrell/autoheal
+#    container_name: autoheal
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    environment:
+#      - AUTOHEAL_CONTAINER_LABEL=all
+#      - AUTOHEAL_INTERVAL=5
+#      - AUTOHEAL_START_PERIOD=0
+#      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10
+#    restart: always
+#
+#  springboot-app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      rabbitmq:
+#        condition: service_healthy
+#    entrypoint: ["./wait-for-it.sh", "rabbitmq:5672", "--", "java", "-jar", "app.jar"]
