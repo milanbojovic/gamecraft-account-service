@@ -61,6 +61,7 @@ The Accounts Service exposes the following endpoints:
 
 - `POST /api/users/register`: Register a new user.
 - `POST /api/users/login`: Authenticate a user and return a JWT token.
+- `GET /api/users`: Get a list of all users.
 
 ## Testing
 
