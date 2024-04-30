@@ -27,9 +27,18 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void createUser(Users users) {
-        logger.info("Creating user: " + users);
-        userRepository.save(users);
+    public Users createUser(Users user) {
+        logger.info("Creating user: " + user);
+
+        if (!"ROLE_User".equals(user.getRole()) && !"ROLE_GameMaster".equals(user.getRole())) {
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Invalid role");
+            logger.error("Invalid role - Only User and GameMaster roles are allowed");
+            return null;
+        }
+
+
+        return userRepository.save(user);
     }
 
     public List<Users> getAllUsers() {
@@ -38,6 +47,7 @@ public class UserService {
 
     public ResponseEntity<?> login(Users user) {
         Users dbUser = userRepository.findByUsername(user.getUsername());
+
         if (dbUser != null && dbUser.getPassword().equals(user.getPassword())) {
             Map<String, String> response = new HashMap<>();
             response.put("Bearer", jwtUtil.generateToken(dbUser.getUsername(), dbUser.getRole(), dbUser.getId()));

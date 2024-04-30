@@ -1,9 +1,11 @@
 package rs.maxbet.worldofgamecraft.config;
 
+ import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -13,6 +15,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
+
+    private final ConnectionFactory connectionFactory;
+
+    public RabbitMQConfig(ConnectionFactory connectionFactory) {
+        this.connectionFactory = connectionFactory;
+    }
+
     @Value("${rabbitmq.queue.character.registration}")
     String queueCharacterUserRegistration;
 
@@ -75,4 +84,14 @@ public class RabbitMQConfig {
         template.setMessageConverter(jsonMessageConverter());
         return template;
     }
+
+//    @PostConstruct
+//    public void createQueues() {
+//        RabbitAdmin admin = new RabbitAdmin(connectionFactory);
+//        admin.declareQueue(new Queue(queueCharacterUserRegistration, false));
+//        admin.declareQueue(new Queue(queueCombatUserRegistration, false));
+//        admin.declareQueue(new Queue(queueCharacterCreation, false));
+//        admin.declareQueue(new Queue(queueCombatOutcome, false));
+//        admin.declareExchange(new FanoutExchange(exchangeUserRegistration));
+//    }
 }
