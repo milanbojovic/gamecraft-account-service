@@ -40,6 +40,9 @@ mvn clean install
 
 You can run the application using either Spring Boot or Maven. But if for some reason container RabbitMQ doesn't start
 please restart it. (on M1 Mac it doesn't start automatically sometimes)
+You can use provided docker-compose file to start all containers
+You can use provided postman collection to test the application (make sure to import environment as well)
+Make sure to run few requests to create some data in the database and initialize queues in RabbitMQ
 
 ```bash
 
