@@ -1,4 +1,4 @@
-# World of Gamecraft Accounts Service
+# World of Gamecraft - Accounts Service
 
 This is the Accounts Service for the World of Gamecraft project. The Accounts Service is responsible for user registration and authentication. It provides API endpoints for user registration and login, and it issues JWT tokens for authenticated users.
 
